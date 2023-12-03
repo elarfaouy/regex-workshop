@@ -3,9 +3,9 @@
 if (isset($_POST['save'])) {
     $titleError = $phoneError = $mailError = null;
 
-    $titlePattern = "/^[a-zA-Z1-9]+\s?[a-zA-Z1-9]+$/";
-    $phonePattern = "/^0[5-8][0-9]{8}$/";
-    $mailPattern = "/^[aA-zZ]{2,50}[-]?[aA-zZ]{2,}@[aA-zZ]{2,}[.][aA-zZ]{2,}$/";
+    $titlePattern = "//";
+    $phonePattern = "//";
+    $mailPattern = "//";
 
     if (!preg_match($titlePattern, $_POST['title']))
         $titleError = "invalid title";
