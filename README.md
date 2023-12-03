@@ -590,6 +590,156 @@ if (preg_match($pattern, $text, $matches)) {
 ?>
 ```
 
+## Flags
+
+Flags in regular expressions are modifiers that alter the behavior of a regex pattern. They can control aspects such as case sensitivity, multiline matching, and more. PHP supports various flags when using PCRE (Perl Compatible Regular Expressions). Here's an overview of commonly used flags:
+
+### i - Case-Insensitive Matching
+
+The i flag enables case-insensitive matching, making the pattern match regardless of letter case.
+
+#### PHP Example
+
+```php
+
+<?php
+// Input text
+$text = "Hello, World!";
+
+// Regex pattern for case-insensitive matching of 'hello'
+$pattern = '/hello/i';
+
+// Perform the regex match
+if (preg_match($pattern, $text, $matches)) {
+    echo "Match found: " . $matches[0];
+    // Output: Match found: Hello
+} else {
+    echo "No match found.";
+}
+?>
+```
+
+
+### m - Multiline Matching
+
+The m flag enables multiline matching, allowing ^ and $ to match the start and end of each line within the input text.
+
+#### PHP Example
+
+```php
+
+<?php
+// Input text
+$text = "Line 1\nLine 2\nLine 3";
+
+// Regex pattern for multiline matching of lines starting with 'Line'
+$pattern = '/^Line/m';
+
+// Perform the regex match
+if (preg_match_all($pattern, $text, $matches)) {
+    print_r($matches[0]);
+    /*
+    Output:
+    Array
+    (
+        [0] => Line 1
+        [1] => Line 2
+    )
+    */
+} else {
+    echo "No matches found.";
+}
+?>
+```
+
+
+### s - Dotall Matching
+
+The s flag enables dotall matching, allowing the dot (.) to match newline characters as well.
+
+#### PHP Example
+
+```php
+
+<?php
+// Input text
+$text = "Line 1\nLine 2\nLine 3";
+
+// Regex pattern for dotall matching of 'Line 1.Line 2'
+$pattern = '/Line 1.Line 2/s';
+
+// Perform the regex match
+if (preg_match($pattern, $text, $matches)) {
+    echo "Match found: " . $matches[0];
+    // Output: Match found: Line 1\nLine 2
+} else {
+    echo "No match found.";
+}
+?>
+```
+
+
+### x - Extended Flag
+
+The x flag enables extended mode, allowing the use of whitespace and comments within the pattern for better readability.
+
+#### PHP Example
+
+```php
+
+<?php
+// Input text
+$text = "Hello, World!";
+
+// Regex pattern in extended mode for matching 'hello'
+$pattern = '/
+    hello  # Match 'hello'
+/ix';
+
+// Perform the regex match
+if (preg_match($pattern, $text, $matches)) {
+    echo "Match found: " . $matches[0];
+    // Output: Match found: Hello
+} else {
+    echo "No match found.";
+}
+?>
+```
+
+### U - Ungreedy Matching
+
+The U flag makes the quantifiers (*, +, ?, and {}) behave in a non-greedy way, matching as little characters as possible.
+
+#### PHP Example
+
+```php
+
+<?php
+// Input text
+$text = "This is <b>bold</b> and <i>italic</i>";
+
+// Regex pattern for ungreedy matching of HTML tags
+$pattern = '/<.*?>/U';
+
+// Perform the regex match
+if (preg_match_all($pattern, $text, $matches)) {
+print_r($matches[0]);
+/*
+Output:
+Array
+(
+[0] => <b>
+[1] => </b>
+[2] => <i>
+[3] => </i>
+)
+*/
+} else {
+echo "No matches found.";
+}
+?>
+```
+
 ## PCRE Functions
 
 PHP provides a set of functions for working with PCRE (Perl Compatible Regular Expressions), allowing developers to perform various operations like matching, searching, and replacing text using regular expressions.
