@@ -351,12 +351,12 @@ PHP Example
 $text = "This is not a test.";
 
 // Regex pattern for matching 'is' when not at a word boundary
-$pattern = '/\Bis\B/';
+$pattern = '/\Bis/';
 
 // Perform the regex match
 if (preg_match($pattern, $text, $matches)) {
     echo "Match found: " . $matches[0];
-    // Output: Match found: is
+    // Output: Match found: is : in 'this'
 } else {
     echo "No match found.";
 }
